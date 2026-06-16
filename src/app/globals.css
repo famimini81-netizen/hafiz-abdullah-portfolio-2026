@@ -309,6 +309,10 @@ section {
       color: rgba(17, 17, 17, 0.88);
       opacity: 0.72;
       padding-block: 2rem;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      text-align: left;
       transition: all 0.3s linear;
       cursor: pointer;
 
@@ -336,6 +340,160 @@ section {
     font-size: clamp(36px, 10vw, 64px);
     line-height: 0.95;
     letter-spacing: -0.03em;
+  }
+}
+
+body:has(.project-detail-backdrop) {
+  overflow: hidden;
+}
+
+.project-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(8, 14, 34, 0.44);
+  backdrop-filter: blur(14px);
+  animation: projectDetailFade 0.2s ease both;
+}
+
+.project-detail-modal {
+  width: min(760px, 100%);
+  max-height: min(86vh, 760px);
+  overflow-y: auto;
+  border: 1px solid rgba(17, 17, 17, 0.16);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(159, 143, 255, 0.2), transparent 32%),
+    radial-gradient(circle at 92% 22%, rgba(82, 208, 238, 0.18), transparent 30%),
+    linear-gradient(110deg, rgba(245, 247, 251, 0.98), rgba(185, 214, 242, 0.96));
+  color: #111111;
+  padding: clamp(28px, 5vw, 52px);
+  box-shadow: 0 32px 90px rgba(4, 7, 24, 0.26);
+  animation: projectDetailRise 0.24s ease both;
+}
+
+.project-detail-modal small,
+.project-detail-label,
+.project-detail-stack span {
+  color: #ff2a3d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.project-detail-modal h2 {
+  margin: 14px 0 12px;
+  color: #111111;
+  font-size: clamp(2.5rem, 8vw, 5.6rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.project-detail-modal p {
+  margin: 0;
+  color: rgba(17, 17, 17, 0.82);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.project-detail-category {
+  margin-bottom: 24px !important;
+  color: rgba(17, 17, 17, 0.66) !important;
+  font-weight: 900 !important;
+}
+
+.project-detail-stack {
+  display: grid;
+  gap: 8px;
+  margin: 28px 0;
+}
+
+.project-detail-modal ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-detail-modal li {
+  color: rgba(17, 17, 17, 0.84);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.project-detail-modal li::before {
+  content: "/";
+  margin-right: 0.5rem;
+  color: #ff2a3d;
+  font-weight: 900;
+}
+
+.project-detail-close {
+  float: right;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  color: #111111;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@keyframes projectDetailFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes projectDetailRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-detail-backdrop {
+    align-items: end;
+    padding: 16px;
+  }
+
+  .project-detail-modal {
+    max-height: 86svh;
+    padding: 28px 22px;
+  }
+
+  .project-detail-modal h2 {
+    font-size: clamp(2.25rem, 12vw, 4rem);
+  }
+
+  .project-detail-modal ul {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1062,71 +1220,71 @@ main:has(#section-2 .title:hover) #canvas-elem::after {
   }
 }
 
-main:has(#section-2 .title[img-title="tomorrowland"]:hover) .images #tomorrowland {
+main:has(#section-2 .title[data-img-title="tomorrowland"]:hover) .images #tomorrowland {
   opacity: 1;
   background-color: rgb(4, 7, 24);
 }
 
-main:has(#section-2 .title[img-title="navy-pier"]:hover) .images #navy-pier {
+main:has(#section-2 .title[data-img-title="navy-pier"]:hover) .images #navy-pier {
   opacity: 1;
   background-color: rgb(4, 7, 24);
 }
 
-main:has(#section-2 .title[img-title="msi-chicago"]:hover) .images #msi-chicago {
+main:has(#section-2 .title[data-img-title="msi-chicago"]:hover) .images #msi-chicago {
   opacity: 1;
   background-color: rgb(4, 7, 24);
 }
 
-main:has(#section-2 .title[img-title="phone"]:hover) .images #phone {
+main:has(#section-2 .title[data-img-title="phone"]:hover) .images #phone {
   opacity: 1;
   background-color: rgb(4, 7, 24);
 }
 
-main:has(#section-2 .title[img-title="kikk"]:hover) .images #kikk {
+main:has(#section-2 .title[data-img-title="kikk"]:hover) .images #kikk {
   opacity: 1;
   background-color: rgba(1, 15, 92, 0.679);
 }
-main:has(#section-2 .title[img-title="kennedy"]:hover) .images #kennedy {
+main:has(#section-2 .title[data-img-title="kennedy"]:hover) .images #kennedy {
   opacity: 1;
   background-color: rgb(4, 7, 24);
 }
-main:has(#section-2 .title[img-title="opera"]:hover) .images #opera {
+main:has(#section-2 .title[data-img-title="opera"]:hover) .images #opera {
   opacity: 1;
   background-color: rgb(176, 4, 4);
 }
 
 @media (max-width: 768px) {
-  main:has(#section-2 .title[img-title="tomorrowland"].is-active) .images #tomorrowland {
+  main:has(#section-2 .title[data-img-title="tomorrowland"].is-active) .images #tomorrowland {
     opacity: 1;
     background-color: rgb(4, 7, 24);
   }
 
-  main:has(#section-2 .title[img-title="navy-pier"].is-active) .images #navy-pier {
+  main:has(#section-2 .title[data-img-title="navy-pier"].is-active) .images #navy-pier {
     opacity: 1;
     background-color: rgb(4, 7, 24);
   }
 
-  main:has(#section-2 .title[img-title="msi-chicago"].is-active) .images #msi-chicago {
+  main:has(#section-2 .title[data-img-title="msi-chicago"].is-active) .images #msi-chicago {
     opacity: 1;
     background-color: rgb(4, 7, 24);
   }
 
-  main:has(#section-2 .title[img-title="phone"].is-active) .images #phone {
+  main:has(#section-2 .title[data-img-title="phone"].is-active) .images #phone {
     opacity: 1;
     background-color: rgb(4, 7, 24);
   }
 
-  main:has(#section-2 .title[img-title="kikk"].is-active) .images #kikk {
+  main:has(#section-2 .title[data-img-title="kikk"].is-active) .images #kikk {
     opacity: 1;
     background-color: rgba(1, 15, 92, 0.679);
   }
 
-  main:has(#section-2 .title[img-title="kennedy"].is-active) .images #kennedy {
+  main:has(#section-2 .title[data-img-title="kennedy"].is-active) .images #kennedy {
     opacity: 1;
     background-color: rgb(4, 7, 24);
   }
 
-  main:has(#section-2 .title[img-title="opera"].is-active) .images #opera {
+  main:has(#section-2 .title[data-img-title="opera"].is-active) .images #opera {
     opacity: 1;
     background-color: rgb(176, 4, 4);
   }
