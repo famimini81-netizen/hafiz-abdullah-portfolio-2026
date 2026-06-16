@@ -234,7 +234,7 @@ export default function ProjectSection() {
           </button>
         ))}
       </div>
-      <div className="absolute bg-red-600 h-px w-390 top-280 md:top-240 left-[10vw] md:left-[70vw] md:w-200 -rotate-45" />
+      <div className="absolute bg-blue-500 h-px w-390 top-280 md:top-240 left-[10vw] md:left-[70vw] md:w-200 -rotate-45" />
 
       {selectedProject && (
         <div className="project-detail-backdrop" onClick={() => setSelectedProject(null)}>

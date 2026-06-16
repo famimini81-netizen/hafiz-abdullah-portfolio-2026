@@ -702,9 +702,7 @@ main:has(#section-2 .title:hover) #canvas-elem::after {
 }
 
 .content-page .nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   z-index: 100;
   display: flex;
@@ -760,7 +758,7 @@ main:has(#section-2 .title:hover) #canvas-elem::after {
 .page-shell {
   position: relative;
   min-height: 100vh;
-  padding: 180px 8vw 100px;
+  padding: 96px 8vw 100px;
   box-sizing: border-box;
 }
 
@@ -962,7 +960,7 @@ main:has(#section-2 .title:hover) #canvas-elem::after {
   }
 
   .page-shell {
-    padding: 140px 28px 80px;
+    padding: 92px 28px 80px;
   }
 
   .content-page-section h1 {
@@ -1250,7 +1248,8 @@ main:has(#section-2 .title[data-img-title="kennedy"]:hover) .images #kennedy {
 }
 main:has(#section-2 .title[data-img-title="opera"]:hover) .images #opera {
   opacity: 1;
-  background-color: rgb(176, 4, 4);
+  background: radial-gradient(circle at center, rgba(36, 96, 255, 0.35), rgba(8, 12, 32, 0.95));
+  filter: hue-rotate(215deg) saturate(1.15) brightness(0.62) contrast(1.08);
 }
 
 @media (max-width: 768px) {
@@ -1286,6 +1285,7 @@ main:has(#section-2 .title[data-img-title="opera"]:hover) .images #opera {
 
   main:has(#section-2 .title[data-img-title="opera"].is-active) .images #opera {
     opacity: 1;
-    background-color: rgb(176, 4, 4);
+    background: radial-gradient(circle at center, rgba(36, 96, 255, 0.35), rgba(8, 12, 32, 0.95));
+    filter: hue-rotate(215deg) saturate(1.15) brightness(0.62) contrast(1.08);
   }
 }
