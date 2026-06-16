@@ -1,4 +1,55 @@
+"use client";
+
+import { useEffect } from "react";
+
 export default function ProjectSection() {
+  useEffect(() => {
+    const section = document.querySelector("#section-2");
+    if (!section) return;
+
+    const titles = Array.from(section.querySelectorAll<HTMLElement>(".title"));
+    const clearActiveTitle = () => titles.forEach((title) => title.classList.remove("is-active"));
+
+    const updateActiveTitle = () => {
+      if (window.innerWidth > 768) {
+        clearActiveTitle();
+        return;
+      }
+
+      const viewportFocus = window.innerHeight * 0.48;
+      let activeIndex = -1;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+
+      titles.forEach((title, index) => {
+        const rect = title.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+        const titleCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(titleCenter - viewportFocus);
+
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          activeIndex = index;
+        }
+      });
+
+      clearActiveTitle();
+      if (activeIndex >= 0) {
+        titles[activeIndex]?.classList.add("is-active");
+      }
+    };
+
+    updateActiveTitle();
+    window.addEventListener("scroll", updateActiveTitle, { passive: true });
+    window.addEventListener("resize", updateActiveTitle);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveTitle);
+      window.removeEventListener("resize", updateActiveTitle);
+      clearActiveTitle();
+    };
+  }, []);
+
   return (
     <section id="section-2" className="overflow-hidden md:pl-40 pl-3">
       <div className="titles">

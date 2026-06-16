@@ -29,7 +29,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="md:mt-15 mt-5 mx-5 md:mx-10 nav-bar relative z-10">
+      <nav className="md:mt-15 mt-5 mx-10 nav-bar relative z-10">
         <Link href="/" className="nav-elem cursor-pointer">
           <p className="text-[22px] font-black uppercase tracking-[0.02em] leading-[1.02] text-white text-left">
             HAFIZ
